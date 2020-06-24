@@ -1,11 +1,15 @@
 package com.example.aplicacionrectageomerica;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText EditX1;
@@ -16,54 +20,90 @@ public class MainActivity extends AppCompatActivity {
     private EditText Editdosliena;
     private Button btnclacular;
 
+    public void crear()
+    {  EditX1=(EditText)findViewById(R.id.editX1);
+       Editx2=(EditText)findViewById(R.id.editX2);
+       Edity1=(EditText)findViewById(R.id.editY1);
+       Edity2=(EditText)findViewById(R.id.editY2);
+       Editpen=(EditText)findViewById(R.id.editPendiente);
+       Editdosliena=(EditText)findViewById(R.id.editdoslineas);
 
-
+        btnclacular=(Button)findViewById(R.id.btnCalcular);
+    }
 
     public void  app()
     {
-        EditX1=(EditText)findViewById(R.id.editX1);
-        Editx2=(EditText)findViewById(R.id.editX2);
-        Edity1=(EditText)findViewById(R.id.editY1);
-        Edity2=(EditText)findViewById(R.id.editY2);
-        Editpen=(EditText)findViewById(R.id.editPendiente);
-        Editdosliena=(EditText)findViewById(R.id.editdoslineas);
-
-        btnclacular=(Button)findViewById(R.id.btnCalcular);
-
-        btnclacular.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                calculo();
-            }
-        });
+      crear();
 
 
-    }
+            btnclacular.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                   try {
+                       calculo();
+                       mostramensaje();
+                   }
+                   catch (Exception e)
+                   {
+                       Toast.makeText(getApplicationContext(),"ingrese un numero",Toast.LENGTH_SHORT).show();
+                   }
+                }
+            });
+        }
+
+
+
+
 
     public void calculo()
-    {
-        double pendiente,disdoslien,x1,x2,y1,y2;
-        y1=Double.parseDouble(Edity1.getText().toString());
-        y2=Double.parseDouble(Edity2.getText().toString());
+    {   recta re1= new recta();
 
-        x1=Double.parseDouble(EditX1.getText().toString());
-        x2=Double.parseDouble(Editx2.getText().toString());
 
-        pendiente=(y2-y1)/(x2-x1);
+
+
+        re1.setY1(Double.parseDouble(Edity1.getText().toString()));
+        re1.setY2(Double.parseDouble(Edity2.getText().toString()));
+        re1.setX1(Double.parseDouble(EditX1.getText().toString()));
+        re1.setX2(Double.parseDouble(Editx2.getText().toString()));
+
+
+
 
         String pen;
-        pen=String.valueOf(pendiente);
+        pen=String.valueOf(re1.pendiente());
         Editpen.setText(pen);
 
 
-        disdoslien=Math.sqrt(Math.pow((x1-x2),2)+Math.pow(y1-y2,2));
+        re1.distanciaentredoslineas();
         String linea;
-        linea=String.valueOf(disdoslien);
+        linea=String.valueOf(re1.distanciaentredoslineas());
         Editdosliena.setText(linea);
 
 
 
+
+
+
+    }
+    public void mostramensaje()
+    {
+        new AlertDialog.Builder(this)
+           .setTitle("exit")
+                .setMessage("¿Desea useted salir?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       Log.d("Mensaje","se cancelo la accion ");
+                    }
+                })
+                .show();
 
     }
 
@@ -73,6 +113,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        app();
+
+         app();
+
     }
+
+
+
 }
