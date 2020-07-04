@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText Edity2;
     private EditText Editpen;
     private EditText Editdosliena;
-    private Button btnclacular;
+    private Button btncalcular;
 
     public void crear()
     {  EditX1=(EditText)findViewById(R.id.editX1);
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
        Editpen=(EditText)findViewById(R.id.editPendiente);
        Editdosliena=(EditText)findViewById(R.id.editdoslineas);
 
-        btnclacular=(Button)findViewById(R.id.btnCalcular);
+        btncalcular=(Button)findViewById(R.id.btnCalcular);
     }
 
     public void  app()
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
       crear();
 
 
-            btnclacular.setOnClickListener(new View.OnClickListener() {
+            btncalcular.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
