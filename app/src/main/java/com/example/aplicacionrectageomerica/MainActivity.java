@@ -80,11 +80,6 @@ public class MainActivity extends AppCompatActivity {
         linea=String.valueOf(re1.distanciaentredoslineas());
         Editdosliena.setText(linea);
 
-
-
-
-
-
     }
     public void mostramensaje()
     {

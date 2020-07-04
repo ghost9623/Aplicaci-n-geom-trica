@@ -134,7 +134,7 @@
         android:id="@+id/textdoslineas"
         android:layout_width="75dp"
         android:layout_height="77dp"
-        android:text="Distancia enter dos lineas "
+        android:text="Distancia entre dos lineas "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.086"
